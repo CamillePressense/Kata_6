@@ -1,6 +1,22 @@
 import { expect, test } from 'vitest'
 import { isValid } from './isvalid.js'
 
+
+const str = "";
+test('empty string to return False', () => {
+  expect(isValid(str)).toBe(false)
+})
+
+const number = 5;
+test('number to return False', () => {
+  expect(isValid(number)).toBe(false)
+})
+
+const str0 = "(";
+test('( to return False', () => {
+  expect(isValid(str0)).toBe(false)
+})
+
 const str1 = "()";
 
 test('() to return True', () => {
@@ -11,6 +27,12 @@ const str11 = "[]";
 
 test('[] to return True', () => {
   expect(isValid(str11)).toBe(true)
+})
+
+const str12 = "{}";
+
+test('{} to return True', () => {
+  expect(isValid(str12)).toBe(true)
 })
 
 
@@ -39,3 +61,4 @@ const str6 = ")()";
 test(')() to return False', () => {
   expect(isValid(str6)).toBe(false)
 })
+

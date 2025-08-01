@@ -1,82 +1,83 @@
-const string = "()";
-const string2 = "()[]{}";
-const string3 = "(]";
-const string4 = "([])";
-const string5 = ")([])";
-const string6 = "([{]";
 
-function stringToArray(string){
-    let array = [];
-    for (let char of string){
-        array.push(char)
+function fizzBuzz(number){
+    if((number % 3) === 0){
+        return false;
     }
-    return array
+    if ((number % 5) === 0){
+        return false;
+    } else {
+        return true;
+    }    
+}
+
+// Returns an array with the indexes of the two associated characters
+function twoSum(numbers, target){
+    let result = [];
+    
+    for (let i=0; i<numbers.length; i++){
+        for (let j=0; j<numbers.length; j++){
+            if ((numbers[i] + numbers[j+1]) === target){
+                if (result.length < 2){
+                    result.push(i)
+                    result.push(j+1)
+                }
+            }
+        }
+    }
+    return result
+}
+
+// Returns true if the closing order of parentheses is correct
+function checkDifference(arrayOfTwoIndex){
+    if (arrayOfTwoIndex.length != 0){
+        const difference = arrayOfTwoIndex[1] - arrayOfTwoIndex[0]
+        return  ( difference === 1) || fizzBuzz(difference)
+    } else {
+        return false
+    }
 }
 
 
-const OPEN_PARENTHESIS = "(";
-const CLOSED_PARENTHESIS = ")";
 
-const OPEN_BRACE = "{";
-const CLOSED_BRACE = "}";
-
-const OPEN_SQUARE_BRACKET = "[";
-const CLOSED_SQUARE_BRACKET = "]";
-
-function checkClosingParenthesis(array){
-     return array.includes(CLOSED_PARENTHESIS)     
-}
-function checkClosingBraces(array){
-     return array.includes(CLOSED_BRACE)     
-}
-function checkClosingSquareBracket(array){
-     return array.includes(CLOSED_SQUARE_BRACKET)     
-}
-
+const PARENTHESIS = "()";
+const BRACES = "{}";
+const SQUARE_BRACKETS = "[]";
 
 export function isValid(string){
-    const array = stringToArray(string);
-    const close = (char) => char === CLOSED_PARENTHESIS;
-    const open = (char) => char === OPEN_PARENTHESIS;
-    let result = [];
+    
+    if ((string.length % 2) === 0){
 
-    if (array.includes(OPEN_PARENTHESIS)){
-        if (checkClosingParenthesis(array)){
-            let openIndex = (array.findIndex(open))
-            let closeIndex = (array.findIndex(close))
-            if (((closeIndex - openIndex) % 2) === 0){
-                result.push(true);
-            }
-        } else {
-            result.push(false);
+        if ((string.length === 2) && (      // condition to eliminate a string of two characters of different types
+            (string === PARENTHESIS ) ||
+            (string === BRACES ) ||
+            (string === SQUARE_BRACKETS )
+        )){
+            return true
+        }    
+
+        const parenthesisIndex = twoSum(string, PARENTHESIS);
+        if (checkDifference(parenthesisIndex)){
+            return true
         }
-    }
-
-    if (array.includes(OPEN_BRACE)){
-        if (checkClosingBraces(array)){
-            result.push(true);
-        } else {
-            result.push(false);
+        const bracesIndex = twoSum(string, BRACES);
+        if (checkDifference(bracesIndex)){
+            return true
         }
-    }
-
-    if (array.includes(OPEN_SQUARE_BRACKET)){
-        if (checkClosingSquareBracket(array)){
-            result.push(true);
-        } else {
-            result.push(false);
+        const squareBracketsIndex = twoSum(string, SQUARE_BRACKETS);
+        if (checkDifference(squareBracketsIndex)){
+            return true
         }
-    }
+        else {
+            return false
+        }
 
-    if (result.includes(false)){
-        return false
     } else {
-        return true
+        
+        return false
     }
-
 }
 
-const str11 = "[]";
 
-//console.log(isValid(str11))
-console.log(isValid(string2))
+
+
+
