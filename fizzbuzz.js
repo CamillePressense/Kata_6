@@ -14,9 +14,5 @@ function fizzBuzz(n){
             answer.push(`${i}`)
         }
     }
-    return console.log(answer)
+    return answer
 }
-
-fizzBuzz(3);
-fizzBuzz(5);
-fizzBuzz(15);
