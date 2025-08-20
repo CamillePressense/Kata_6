@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Kata 6</title>
+</head>
+<body>
+    <h1>Test des fonctions Kata 6</h1>
+    <div id="results"></div>
+
+    <script src="fizzbuzz.js"></script>
+    <script src="twosum.js"></script>
+    <script src="isvalid.js"></script>
+    <script>
+        // Tests dans la console du navigateur
+        console.log('=== FIZZBUZZ ===');
+        console.log('fizzBuzz(3):', fizzBuzz(3));
+        console.log('fizzBuzz(5):', fizzBuzz(5));
+        console.log('fizzBuzz(15):', fizzBuzz(15));
+
+        console.log('=== TWOSUM ===');
+        console.log('twoSum([2,7,11,15], 9):', twoSum([2,7,11,15], 9));
+        console.log('twoSum([3,2,4], 6):', twoSum([3,2,4], 6));
+
+        console.log('=== ISVALID ===');
+        console.log('isValid("()"):', isValid("()"));
+        console.log('isValid("()[]{}"):', isValid("()[]{}"));
+        console.log('isValid("(]"):', isValid("(]"));
+    </script>
+</body>
+</html>
